@@ -38,12 +38,12 @@ function no_more_jumping($post)
 
 add_filter('the_content_more_link', 'no_more_jumping');
 
-// Thumnail
+// Thumbnail
 add_theme_support('post-thumbnails');
-add_image_size('case-thumb', 500, 500, true);
-add_image_size('cat-thumb', 270, 400, true);
-add_image_size('prod-thumb', 500, 330, true);
-add_image_size('gallery-thumb', 1200, 400, true);
+add_image_size('team-thumb', 500, 500, true);
+add_image_size('song-thumb', 500, 500, true);
+add_image_size('photo-thumb', 500, 500, true);
+add_image_size('news-thumb', 500, 400, true);
 add_filter('image_size_names_choose', 'my_custom_sizes');
 function my_custom_sizes($sizes)
 {
@@ -63,16 +63,16 @@ function remove_br_gallery($output)
 
 
 // Post per page
-function custom_posts_per_page($query)
-{
-    if (is_category(11)) {
-        $query->set('posts_per_page', 16);
-    } elseif (is_category(7)) {
-        $query->set('posts_per_page', 16);
-    }
-}
+//function custom_posts_per_page($query)
+//{
+//    if (is_category(11)) {
+//        $query->set('posts_per_page', 16);
+//    } elseif (is_category(7)) {
+//        $query->set('posts_per_page', 16);
+//    }
+//}
 
-add_action('pre_get_posts', 'custom_posts_per_page');
+//add_action('pre_get_posts', 'custom_posts_per_page');
 
 
 // Style
@@ -90,7 +90,7 @@ add_action('wp_enqueue_scripts', 'my_theme_enqueue_style');
 // Scripts
 function my_theme_add_scripts()
 {
-    if (is_home() || is_page(2) || is_page(11)) {
+    if ( is_page(9) ) {
         wp_enqueue_script('google-map', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC7nl04gTQl-ZBg0gjus9KGEEOKiczTW7o&callback=initMap', '', '', true);
     }
 //    wp_enqueue_script('slick', get_template_directory_uri() . '/bower_components/slick-carousel/slick/slick.min.js', '', '', true);
@@ -160,3 +160,75 @@ add_filter( 'upload_mimes', 'my_upload_mimes' );
 
 // Pages
 $biography = get_post(7);
+$schedule  = get_post(43);
+
+// Schedule Sort Array
+function getScheduleSortArray($array)
+{
+    if (count($array)) {
+        $data = [];
+        foreach ($array as $item) {
+            $date = $item['date'];
+            $date = new DateTime($date);
+            $item['date'] = $date->format('d.m.Y');
+            switch ($date->format('m')) {
+                case '01' :
+                    $data['01'][] = $item;
+                    break;
+                case '02' :
+                    $data['02'][] = $item;
+                    break;
+                case '03' :
+                    $data['03'][] = $item;
+                    break;
+                case '04' :
+                    $data['04'][] = $item;
+                    break;
+                case '05' :
+                    $data['05'][] = $item;
+                    break;
+                case '06' :
+                    $data['06'][] = $item;
+                    break;
+                case '07' :
+                    $data['07'][] = $item;
+                    break;
+                case '08' :
+                    $data['08'][] = $item;
+                    break;
+                case '09' :
+                    $data['09'][] = $item;
+                    break;
+                case '10' :
+                    $data['11'][] = $item;
+                    break;
+                case '11' :
+                    $data['11'][] = $item;
+                    break;
+                case '12' :
+                    $data['12'][] = $item;
+                    break;
+            }
+        }
+        return $data;
+    }
+    return false;
+}
+function getMonthName($monthNum)
+{
+    $months = array(
+        '01' => 'Січень' ,
+        '02' => 'Лютий' ,
+        '03' => 'Березень' ,
+        '04' => 'Квітень' ,
+        '05' => 'Травень' ,
+        '06' => 'ЧервеньИюнь' ,
+        '07' => 'Липень' ,
+        '08' => 'Серпень' ,
+        '09' => 'Вересень' ,
+        '10' => 'Жовтень' ,
+        '11' => 'Листопад' ,
+        '12' => 'Грудень'
+    );
+    return $months[$monthNum];
+}

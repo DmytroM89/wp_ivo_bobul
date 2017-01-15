@@ -20,6 +20,32 @@ get_header(); ?>
                         <?php the_field('intro', $biography->ID); ?>
                     </div>
                 </div>
+                <div class="m-schedule">
+                    <?php if ( have_rows('schedule', $schedule->ID) ) : ?>
+                        <div class="m-schedule__list row">
+                            <div class="col-xs-12 col-md-6">
+                                <?php
+                                $count = 0;
+                                while ( have_rows('schedule', $schedule->ID) ) : the_row(); ?>
+                                    <?php
+                                    $count++;
+                                    $date = get_sub_field('date');
+                                    $date = new DateTime($date);
+                                    ?>
+                                    <p>
+                                        <span><?php echo $date->format('d.m.Y'); ?></span>
+                                        -
+                                        <span><?php the_sub_field('city'); ?></span>
+                                        -
+                                        <span><?php the_sub_field('place'); ?></span>
+                                    </p>
+                                    <?php if ($count == 3) echo "</div><div class='col-xs-12 col-md-6'>"; ?>
+                                    <?php if ($count == 6) break; ?>
+                                <?php endwhile; ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>

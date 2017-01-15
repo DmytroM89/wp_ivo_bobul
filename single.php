@@ -1,20 +1,53 @@
-<?php
-/**
- * Чистый Шаблон для разработки
- * Шаблон вывода поста
- * http://dontforget.pro
- * @package WordPress
- * @subpackage clean
- */
-get_header(); // Подключаем хедер?> 
-<?php if ( have_posts() ) while ( have_posts() ) : the_post(); // Начало цикла ?>
-<h1><?php the_title(); // Заголовок ?></h1>
-<?php the_content(); // Содержимое страницы ?>
-<?php echo 'Рубрики: '; the_category( ' | ' ); // Выводим категории поста ?>
-<?php the_tags( 'Тэги: ', ' | ', '' ); // Выводим тэги(метки) поста ?>
-<?php endwhile; // Конец цикла ?>
-<?php previous_post_link( '%link', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'twentyten' ) . '</span> %title' ); // Ссылка на предидущий пост?>
-<?php next_post_link( '%link', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'twentyten' ) . '</span>' ); // Ссылка на следующий пост?> 
-<?php comments_template( '', true ); // Комментарии ?>
-<?php get_sidebar(); // Подключаем сайдбар ?>
-<?php get_footer(); // Подключаем футер ?>
+<?php get_header(); ?>
+
+
+<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
+
+    <section class="p-songs">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1 class="page-title"><?php the_title(); ?></h1>
+                    <?php if (in_category(5)) : ?>
+                        <div class="row p-songs__album">
+                            <div class="col-xs-12 col-md-4">
+                                <?php if (has_post_thumbnail()) {
+                                    the_post_thumbnail('song-thumb');
+                                } else {
+                                    echo '<img src="' . get_template_directory_uri() . '/assets/images/default-photo--song.jpg" alt="" >';
+                                } ?>
+                            </div>
+                            <div class="col-xs-12 col-md-8">
+                                <?php if ( have_rows('songs') ) : ?>
+                                    <div class="p-songs__list">
+                                        <?php while ( have_rows('songs') ) : the_row(); ?>
+                                            <div class="p-songs__audio">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-md-4">
+                                                        <?php the_sub_field('title'); ?>
+                                                    </div>
+                                                    <div class="col-xs-12 col-md-4">
+                                                        <audio controls>
+                                                            <source src="<?php the_sub_field('audio'); ?>" type="audio/mpeg">
+                                                        </audio>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endwhile; ?>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php else : ?>
+                        <div class="content">
+                            <?php the_content(); ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<?php endwhile; ?>
+
+<?php get_footer(); ?>
