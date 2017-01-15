@@ -1,0 +1,28 @@
+// BEM modifier() mixin
+@mixin modifier($name)
+  @at-root
+    // '&' is a double-wrapped list
+    $selector: nth(&, 1)
+    // direct parent will be the last item in that list
+    $direct-parent: nth($selector, length($selector))
+    // modifier should have all properties of parent
+    #{$direct-parent}--#{$name}
+      @extend #{$direct-parent}
+    // '@content' will be in a nested selector however, if that is the context
+    #{&}--#{$name}
+      @content
+
+// BEM element() mixin--as has been seen elsewhere
+@mixin element($name)
+  @at-root
+    #{&}__#{$name}
+      @content
+
+// Position
+@mixin position($position, $top, $right, $bottom, $left, $z-index)
+  position: $position
+  top: $top
+  right: $right
+  bottom: $bottom
+  left: $left
+  z-index: $z-index
