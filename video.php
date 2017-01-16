@@ -14,12 +14,12 @@ get_header(); ?>
                 <div class="col-xs-12">
                     <h1 class="page-title"><?php the_title(); ?></h1>
                     <?php if ( have_rows('video') ) : ?>
-                        <div class="p-video__list row">
+                        <div class="p-video__list">
                             <?php while ( have_rows('video') ) : the_row(); ?>
-                                <div class="m-video__col">
-                                    <div class="p-video__iframe">
-                                        <?php the_sub_field('code'); ?>
-                                    </div>
+                                <div class="p-video__col">
+                                    <a class="p-video__link mfp-iframe" href="<?php the_sub_field('code'); ?>">
+                                        <img src="https://img.youtube.com/vi/<?php echo getYoutubeVideoId( get_sub_field('code') ); ?>/0.jpg" alt="">
+                                    </a>
                                     <h2 class="p-video__title"><?php the_sub_field('title'); ?></h2>
                                 </div>
                             <?php endwhile; ?>

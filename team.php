@@ -14,10 +14,10 @@ get_header(); ?>
                 <div class="col-xs-12">
                     <h1 class="page-title"><?php the_title(); ?></h1>
                     <?php if ( have_rows('team') ) : ?>
-                        <div class="p-team__list row">
+                        <div class="p-team__list">
                             <?php while ( have_rows('team') ) : the_row(); ?>
-                                <div class="m-team__col">
-                                    <a href="<?php the_permalink(); ?>">
+                                <div class="p-team__col">
+                                    <a class="p-team__img" href="<?php the_permalink(); ?>">
                                         <?php
                                         $image = get_sub_field('photo');
                                         $size = 'team-thumb';

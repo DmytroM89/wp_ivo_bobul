@@ -2,3 +2,357 @@
 @import "_fonts"
 @import "_keyframes"
 @import "_mixin"
+
+// Colors
+$red: #d24a43
+$white: #fff
+$black: #000
+$gray: #bdbdbd
+
+body
+  font-family: 'Roboto'
+
+.wrapper
+  background-image: url("../img/bg-home.jpg")
+  background-size: cover
+  background-position: center
+  background-color: $black
+  background-repeat: no-repeat
+  @include modifier(home)
+    background-image: url("../img/bg-home.jpg")
+  @include modifier(schedule)
+    background-image: url("../img/bg-schedule.jpg")
+  @include modifier(video)
+    background-image: url("../img/bg-video.jpg")
+  @include modifier(team)
+    background-image: url("../img/bg-team.jpg")
+
+.header
+  position: relative
+  z-index: 50
+
+.e-logo
+  display: block
+  background: url("../img/logo.png") no-repeat center
+  width: 181px
+  height: 52px
+  margin: 7px auto 30px
+
+.page-title
+  color: $white
+  text-transform: uppercase
+  font-size: 45px
+  font-weight: bold
+  padding-bottom: 20px
+  margin-bottom: 25px
+  position: relative
+  &::after
+    content: ''
+    width: 100%
+    max-width: 675px
+    height: 1px
+    background: linear-gradient(to right, $red 0%,transparent 100%)
+    position: absolute
+    bottom: 0
+    left: 0
+
+.content
+  color: $white
+  p
+    margin-bottom: 10px
+    line-height: 1.65
+    text-indent: 30px
+  ol, ul
+    line-height: 1.5
+    margin-left: 30px
+    margin-bottom: 10px
+  a
+    color: $white
+    text-decoration: underline
+    &:hover
+      opacity: 0.5
+      text-decoration: none
+  img
+    &.aligncenter
+      margin: 0 auto 20px
+      display: block
+    &.alignright
+      float: right
+      margin: 0 0 20px 20px
+    &.alignleft
+      float: left
+      margin: 0 20px 20px 0
+  table
+    td
+      border: 1px solid $white
+      padding: 5px 10px
+      font-size: 12px
+
+.m-nav
+  text-align: center
+  ul.menu
+    list-style: none
+    text-align: center
+    display: -ms-flexbox
+    display: -webkit-flex
+    display: flex
+    -webkit-flex-direction: row
+    -ms-flex-direction: row
+    flex-direction: row
+    -webkit-flex-wrap: wrap
+    -ms-flex-wrap: wrap
+    flex-wrap: wrap
+    -webkit-justify-content: space-between
+    -ms-flex-pack: justify
+    justify-content: space-between
+    -webkit-align-content: stretch
+    -ms-flex-line-pack: stretch
+    align-content: stretch
+    -webkit-align-items: flex-start
+    -ms-flex-align: start
+    align-items: flex-start
+    & > li
+      -webkit-order: 0
+      -ms-flex-order: 0
+      order: 0
+      -webkit-flex: 1 1 auto
+      -ms-flex: 1 1 auto
+      flex: 1 1 auto
+      -webkit-align-self: auto
+      -ms-flex-item-align: auto
+      align-self: auto
+      position: relative
+      &::before
+        content: ''
+        position: absolute
+        top: 50%
+        left: -2px
+        margin-top: -2px
+        width: 4px
+        height: 4px
+        border-radius: 50%
+        background: $red
+      &:first-child
+        &::before
+          display: none
+      & > a
+        display: block
+        font-size: 18px
+        text-transform: uppercase
+        color: $white
+        height: 50px
+        line-height: 50px
+        &:hover
+          opacity: 0.5
+      &.current-menu-item
+        & > a
+          color: $red
+.m-biography
+  margin-bottom: 70px
+  @include element(title)
+    color: $white
+    text-transform: uppercase
+    font-size: 20px
+    font-weight: bold
+    padding-bottom: 10px
+    border-bottom: 1px solid $red
+    margin-bottom: 12px
+  @include element(content)
+    color: $gray
+    font-size: 14px
+    line-height: 1.42
+    position: relative
+    &::after
+      content: ''
+      position: absolute
+      right: 0
+      bottom: -40px
+      background: url("../img/signature.png") no-repeat center
+      width: 125px
+      height: 48px
+.m-schedule
+  background: rgba($white, 0.1)
+  border: 1px solid rgba($red,0.1)
+  border-radius: 1px
+  padding: 20px 0 0
+  position: relative
+  margin-bottom: 50px
+  &::before
+    content: ''
+    background: rgba($white,0.1)
+    width: 1px
+    position: absolute
+    top: 10px
+    left: 50%
+    bottom: 10px
+  p
+    font-size: 14px
+    color: $white
+    padding: 0 25px 20px
+    span
+      display: inline-block
+      vertical-align: top
+
+
+
+.p-home
+  @include element(pic)
+    background: url("../img/home-pic.png") no-repeat top center
+    background-size: cover
+    position: absolute
+    bottom: 0
+    left: -100%
+    z-index: 2
+    height: 100%
+    @media (min-height: 800px)
+      width: 100%
+    @media (max-height: 799px)
+      width: 459px
+  @include element(logo)
+    background: url("../img/home-logo.png")
+    background-size: cover
+    width: 476px
+    height: 249px
+    display: block
+    position: relative
+    z-index: 1
+    @media (min-height: 800px)
+      margin-bottom: 50px
+      margin-left: -100px
+    @media (max-height: 799px)
+      margin-bottom: 30px
+      margin-left: -235px
+  @include element(col)
+    position: relative
+    @include modifier(right)
+      padding-top: 30px
+      min-height: calc(100vh - 50px)
+.p-schedule
+  color: $white
+  @include element(title)
+    font-size: 20px
+    margin-bottom: 20px
+    text-transform: uppercase
+  @include element(list)
+    margin-bottom: 20px
+    max-width: 60%
+  p
+    margin-bottom: 10px
+    span
+      display: inline-block
+      vertical-align: top
+      text-transform: uppercase
+  @include element(col)
+    min-height: calc(100vh - 139px)
+  @include element(pic)
+    background: url("../img/schedule-pic.png") no-repeat center bottom
+    background-size: contain
+    //width: 479px
+    //height: 700px
+    position: absolute
+    bottom: 0
+    right: 0
+    width: 40%
+    height: 115%
+
+.p-biography
+  .content
+    position: relative
+    margin-bottom: 120px
+    &::after
+      content: ''
+      position: absolute
+      right: 100px
+      bottom: -70px
+      background: url("../img/signature.png") no-repeat center
+      width: 125px
+      height: 48px
+.p-video
+  @include element(list)
+    margin: 0 -25px
+    display: -ms-flexbox
+    display: -webkit-flex
+    display: flex
+    -webkit-flex-direction: row
+    -ms-flex-direction: row
+    flex-direction: row
+    -webkit-flex-wrap: wrap
+    -ms-flex-wrap: wrap
+    flex-wrap: wrap
+    -webkit-justify-content: flex-start
+    -ms-flex-pack: start
+    justify-content: flex-start
+    -webkit-align-content: flex-start
+    -ms-flex-line-pack: start
+    align-content: flex-start
+    -webkit-align-items: flex-start
+    -ms-flex-align: start
+    align-items: flex-start
+  @include element(col)
+    width: 20%
+    padding: 0 25px
+    -webkit-order: 0
+    -ms-flex-order: 0
+    order: 0
+    -webkit-flex: 0 1 auto
+    -ms-flex: 0 1 auto
+    flex: 0 1 auto
+    -webkit-align-self: auto
+    -ms-flex-item-align: auto
+    align-self: auto
+  @include element(link)
+    display: block
+    margin-bottom: 10px
+  @include element(title)
+    color: $white
+    font-weight: normal
+    margin-bottom: 20px
+.p-team
+  @include element(list)
+    margin: 0 -25px
+    display: -ms-flexbox
+    display: -webkit-flex
+    display: flex
+    -webkit-flex-direction: row
+    -ms-flex-direction: row
+    flex-direction: row
+    -webkit-flex-wrap: wrap
+    -ms-flex-wrap: wrap
+    flex-wrap: wrap
+    -webkit-justify-content: flex-start
+    -ms-flex-pack: start
+    justify-content: flex-start
+    -webkit-align-content: flex-start
+    -ms-flex-line-pack: start
+    align-content: flex-start
+    -webkit-align-items: flex-start
+    -ms-flex-align: start
+    align-items: flex-start
+  @include element(col)
+    width: 20%
+    padding: 0 25px
+    -webkit-order: 0
+    -ms-flex-order: 0
+    order: 0
+    -webkit-flex: 0 1 auto
+    -ms-flex: 0 1 auto
+    flex: 0 1 auto
+    -webkit-align-self: auto
+    -ms-flex-item-align: auto
+    align-self: auto
+    margin-bottom: 40px
+  @include element(img)
+    display: block
+    margin-bottom: 15px
+    img
+      display: block
+  @include element(title)
+    font-size: 18px
+    font-weight: normal
+    margin-bottom: 5px
+    color: $white
+    text-align: center
+  @include element(post)
+    font-size: 13px
+    color: $white
+    text-align: center

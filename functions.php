@@ -232,3 +232,37 @@ function getMonthName($monthNum)
     );
     return $months[$monthNum];
 }
+
+function getPageClass($id)
+{
+    $homeId = 2;
+    $videoId = 24;
+    $teamId = 13;
+    $contactsId = 9;
+    $photoId = 11;
+    $biographyId = 7;
+    $scheduleId = 43;
+
+    if ( $homeId == $id ) {
+        return '--home';
+    } if ( $scheduleId == $id ) {
+        return '--schedule';
+    } if ( $videoId == $id ) {
+        return '--video';
+    } if ( $teamId == $id ) {
+        return '--team';
+    }
+}
+
+function getPageId()
+{
+//    $page_object = get_queried_object();
+    $page_id = get_queried_object_id();
+    return $page_id;
+}
+
+function getYoutubeVideoId($url)
+{
+    parse_str( parse_url( $url, PHP_URL_QUERY ), $my_array_of_vars );
+    return $my_array_of_vars['v'];
+}

@@ -46,17 +46,19 @@
             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.png">
         </span>
     </div>
-
-    <div class="wrapper">
+    
+    <div class="wrapper<?php echo getPageClass( getPageId() ); ?>">
 
         <header class="header">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
-                        <nav class="header__nav">
+                        <nav class="m-nav">
                             <?php wp_nav_menu("menu=main_menu"); ?>
                         </nav>
-                        <a href="<?php echo get_home_url(); ?>" title="<?php echo get_bloginfo('name'); ?>"></a>
+                        <?php if ( !is_home() ) : ?>
+                        <a class="e-logo" href="<?php echo get_home_url(); ?>" title="<?php echo get_bloginfo('name'); ?>"></a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

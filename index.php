@@ -9,10 +9,8 @@ get_header(); ?>
 <section class="p-home">
     <div class="container">
         <div class="row">
-            <div class="col-xs-6">
-
-            </div>
-            <div class="col-xs-6">
+            <div class="col-xs-6 col-xs-offset-6 p-home__col--right">
+                <div class="p-home__pic"></div>
                 <a href="<?php echo get_home_url(); ?>" class="p-home__logo"></a>
                 <div class="m-biography">
                     <h3 class="m-biography__title"><?php echo $biography->post_title; ?></h3>
@@ -22,7 +20,7 @@ get_header(); ?>
                 </div>
                 <div class="m-schedule">
                     <?php if ( have_rows('schedule', $schedule->ID) ) : ?>
-                        <div class="m-schedule__list row">
+                        <div class="row">
                             <div class="col-xs-12 col-md-6">
                                 <?php
                                 $count = 0;
