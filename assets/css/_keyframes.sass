@@ -1,49 +1,14 @@
-@keyframes mind
+@keyframes menuDown
   0%
-    transform: rotateZ(-5deg) translate3d(0,-15px,0)
-  25%
-    transform: rotateZ(0deg)
+    display: none
+    opacity: 0
+    margin-top: -5px
+  5%
+    display: block
+    opacity: 0
   50%
-    transform: rotateZ(-5deg) translate3d(0,20px,0)
-  75%
-    transform: rotateZ(0deg)
+    opacity: 1
+    margin-top: 10px
   100%
-    transform: rotateZ(-5deg) translate3d(0,-15px,0)
-@keyframes wave-1
-  0%
-    transform: rotateZ(0deg) translate(20px, -8px) rotateZ(0deg)
-  100%
-    transform: rotateZ(360deg) translate(20px, -8px) rotateZ(-360deg)
-@keyframes wave-2
-  0%
-    transform: rotateZ(0deg) translate(-15px,5px) rotateZ(0deg)
-  100%
-    transform: rotateZ(-360deg) translate(-15px,5px) rotateZ(360deg)
-@keyframes wave-3
-  0%
-    transform: rotateZ(0deg) translate(-25px,15px) rotateZ(0deg)
-  100%
-    transform: rotateZ(-360deg) translate(-25px,15px) rotateZ(360deg)
-@keyframes iceberg-1
-  0%
-    transform: rotateZ(-3deg) translate(25px,8px)
-  50%
-    transform: rotateZ(8deg) translate(-25px,-5px)
-  100%
-    transform: rotateZ(-3deg) translate(25px,8px)
-@keyframes iceberg-2
-  0%
-    transform: rotateZ(-5deg) translate3d(0,15px,0)
-  50%
-    transform: rotateZ(8deg) translate3d(20px,-20px,0)
-  100%
-    transform: rotateZ(-5deg) translate3d(0,15px,0)
-@keyframes iceberg-3
-  0%
-    transform: translate(0,0) rotateZ(0deg)
-  33.3%
-    transform: translate(40px,0) rotateZ(6deg)
-  66.6%
-    transform: translate(-30px,-5px) rotateZ(-6deg)
-  100%
-    transform: translate(0,0) rotateZ(0deg)
+    opacity: 1
+    margin-top: 0

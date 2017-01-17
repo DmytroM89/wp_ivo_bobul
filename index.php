@@ -9,7 +9,7 @@ get_header(); ?>
 <section class="p-home">
     <div class="container">
         <div class="row">
-            <div class="col-xs-6 col-xs-offset-6 p-home__col--right">
+            <div class="col-xs-12 col-lg-6 col-lg-offset-6 p-home__col--right">
                 <div class="p-home__pic"></div>
                 <a href="<?php echo get_home_url(); ?>" class="p-home__logo"></a>
                 <div class="m-biography">

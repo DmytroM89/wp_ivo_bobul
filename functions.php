@@ -95,7 +95,8 @@ function my_theme_add_scripts()
     }
 //    wp_enqueue_script('slick', get_template_directory_uri() . '/bower_components/slick-carousel/slick/slick.min.js', '', '', true);
     wp_enqueue_script('magnific', get_template_directory_uri() . '/bower_components/magnific-popup/dist/jquery.magnific-popup.min.js', '', '', true);
-    wp_enqueue_script('scripts', get_template_directory_uri() . '/assets/js/scripts.min.js', '', '', true);
+    wp_enqueue_script('audio', get_template_directory_uri() . '/bower_components/audio-js/src/audio-js.min.js', '', '', true);
+    wp_enqueue_script('scripts', get_template_directory_uri() . '/assets/js/scripts.js', '', '', true);
 }
 
 add_action('wp_enqueue_scripts', 'my_theme_add_scripts');
@@ -242,6 +243,8 @@ function getPageClass($id)
     $photoId = 11;
     $biographyId = 7;
     $scheduleId = 43;
+    $newsId = 4;
+    $songsId = 5;
 
     if ( $homeId == $id ) {
         return '--home';
@@ -251,6 +254,12 @@ function getPageClass($id)
         return '--video';
     } if ( $teamId == $id ) {
         return '--team';
+    } if ( $newsId == $id ) {
+        return '--news';
+    } if ( $photoId == $id ) {
+        return '--photo';
+    } if ( $songsId == $id ) {
+        return '--photo';
     }
 }
 

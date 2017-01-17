@@ -17,7 +17,7 @@ get_header(); ?>
                         <div class="p-photo__list row">
                             <?php while ( have_rows('photo') ) : the_row(); ?>
                                 <div class="col-xs-6 col-md-4 p-photo__item">
-                                    <a href="<?php echo wp_get_attachment_image_url(get_sub_field('image'), 'full'); ?>">
+                                    <a class="p-photo__link" href="<?php echo wp_get_attachment_image_url(get_sub_field('image'), 'full'); ?>">
                                         <?php echo wp_get_attachment_image(get_sub_field('image'), 'photo-thumb'); ?>
                                     </a>
                                 </div>

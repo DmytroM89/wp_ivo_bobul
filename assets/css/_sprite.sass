@@ -1,0 +1,121 @@
+// SASS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home
+//   width: $icon-home-width
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites
+$icon-address-name: 'icon-address'
+$icon-address-x: 29px
+$icon-address-y: 0px
+$icon-address-offset-x: -29px
+$icon-address-offset-y: 0px
+$icon-address-width: 24px
+$icon-address-height: 33px
+$icon-address-total-width: 113px
+$icon-address-total-height: 63px
+$icon-address-image: '../img/sprite.png'
+$icon-address: (29px, 0px, -29px, 0px, 24px, 33px, 113px, 63px, '../img/sprite.png', 'icon-address', )
+$icon-email-name: 'icon-email'
+$icon-email-x: 81px
+$icon-email-y: 0px
+$icon-email-offset-x: -81px
+$icon-email-offset-y: 0px
+$icon-email-width: 32px
+$icon-email-height: 21px
+$icon-email-total-width: 113px
+$icon-email-total-height: 63px
+$icon-email-image: '../img/sprite.png'
+$icon-email: (81px, 0px, -81px, 0px, 32px, 21px, 113px, 63px, '../img/sprite.png', 'icon-email', )
+$icon-phone-name: 'icon-phone'
+$icon-phone-x: 0px
+$icon-phone-y: 29px
+$icon-phone-offset-x: 0px
+$icon-phone-offset-y: -29px
+$icon-phone-width: 24px
+$icon-phone-height: 34px
+$icon-phone-total-width: 113px
+$icon-phone-total-height: 63px
+$icon-phone-image: '../img/sprite.png'
+$icon-phone: (0px, 29px, 0px, -29px, 24px, 34px, 113px, 63px, '../img/sprite.png', 'icon-phone', )
+$icon-schedule-name: 'icon-schedule'
+$icon-schedule-x: 0px
+$icon-schedule-y: 0px
+$icon-schedule-offset-x: 0px
+$icon-schedule-offset-y: 0px
+$icon-schedule-width: 29px
+$icon-schedule-height: 29px
+$icon-schedule-total-width: 113px
+$icon-schedule-total-height: 63px
+$icon-schedule-image: '../img/sprite.png'
+$icon-schedule: (0px, 0px, 0px, 0px, 29px, 29px, 113px, 63px, '../img/sprite.png', 'icon-schedule', )
+$icon-search-name: 'icon-search'
+$icon-search-x: 53px
+$icon-search-y: 0px
+$icon-search-offset-x: -53px
+$icon-search-offset-y: 0px
+$icon-search-width: 28px
+$icon-search-height: 27px
+$icon-search-total-width: 113px
+$icon-search-total-height: 63px
+$icon-search-image: '../img/sprite.png'
+$icon-search: (53px, 0px, -53px, 0px, 28px, 27px, 113px, 63px, '../img/sprite.png', 'icon-search', )
+$spritesheet-width: 113px
+$spritesheet-height: 63px
+$spritesheet-image: '../img/sprite.png'
+$spritesheet-sprites: ($icon-address, $icon-email, $icon-phone, $icon-schedule, $icon-search, )
+$spritesheet: (113px, 63px, '../img/sprite.png', $spritesheet-sprites, )
+
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home
+//   @include sprite-width($icon-home)
+//
+// .icon-email
+//   @include sprite($icon-email)
+//
+// Example usage in HTML:
+//   `display: block` sprite:
+//   <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//   // CSS
+//   .icon {
+//     display: inline-block;
+//   }
+//
+//   // HTML
+//   <i class="icon icon-home"></i>
+@mixin sprite-width($sprite)
+  width: nth($sprite, 5)
+
+@mixin sprite-height($sprite)
+  height: nth($sprite, 6)
+
+@mixin sprite-position($sprite)
+  $sprite-offset-x: nth($sprite, 3)
+  $sprite-offset-y: nth($sprite, 4)
+  background-position: $sprite-offset-x  $sprite-offset-y
+
+@mixin sprite-image($sprite)
+  $sprite-image: nth($sprite, 9)
+  background-image: url(#{$sprite-image})
+
+@mixin sprite($sprite)
+  @include sprite-image($sprite)
+  @include sprite-position($sprite)
+  @include sprite-width($sprite)
+  @include sprite-height($sprite)
+
+// The `sprites` mixin generates identical output to the CSS template
+//   but can be overridden inside of SASS
+//
+// @include sprites($spritesheet-sprites)
+@mixin sprites($sprites)
+  @each $sprite in $sprites
+    $sprite-name: nth($sprite, 10)
+    .#{$sprite-name}
+      @include sprite($sprite)

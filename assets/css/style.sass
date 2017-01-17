@@ -2,9 +2,11 @@
 @import "_fonts"
 @import "_keyframes"
 @import "_mixin"
+@import "_sprite"
 
 // Colors
 $red: #d24a43
+$red--black: #1d0404
 $white: #fff
 $black: #000
 $gray: #bdbdbd
@@ -13,31 +15,42 @@ body
   font-family: 'Roboto'
 
 .wrapper
-  background-image: url("../img/bg-home.jpg")
+  background-image: url("../img/bg-default.jpg")
   background-size: cover
   background-position: center
   background-color: $black
   background-repeat: no-repeat
+  background-attachment: fixed
   @include modifier(home)
-    background-image: url("../img/bg-home.jpg")
+    background-image: url("../img/bg-default.jpg")
   @include modifier(schedule)
     background-image: url("../img/bg-schedule.jpg")
   @include modifier(video)
     background-image: url("../img/bg-video.jpg")
   @include modifier(team)
     background-image: url("../img/bg-team.jpg")
+  @include modifier(news)
+    background-image: url("../img/bg-news.jpg")
+  @include modifier(photo)
+    background-image: url("../img/bg-photo.jpg")
+  @include modifier(songs)
+    background-image: url("../img/bg-photo.jpg")
 
 .header
   position: relative
   z-index: 50
+  @media (max-width: 991px)
+    position: static
 
 .e-logo
   display: block
   background: url("../img/logo.png") no-repeat center
   width: 181px
   height: 52px
-  margin: 7px auto 30px
-
+  @media (min-width: 992px)
+    margin: 7px auto 30px
+  @media (max-width: 991px)
+    margin: -30px auto 40px
 .page-title
   color: $white
   text-transform: uppercase
@@ -70,7 +83,7 @@ body
     color: $white
     text-decoration: underline
     &:hover
-      opacity: 0.5
+      opacity: 0.8
       text-decoration: none
   img
     &.aligncenter
@@ -90,38 +103,54 @@ body
 
 .m-nav
   text-align: center
+  height: 50px
+  @media (max-width: 991px)
+    position: static
   ul.menu
     list-style: none
     text-align: center
-    display: -ms-flexbox
-    display: -webkit-flex
-    display: flex
-    -webkit-flex-direction: row
-    -ms-flex-direction: row
-    flex-direction: row
-    -webkit-flex-wrap: wrap
-    -ms-flex-wrap: wrap
-    flex-wrap: wrap
-    -webkit-justify-content: space-between
-    -ms-flex-pack: justify
-    justify-content: space-between
-    -webkit-align-content: stretch
-    -ms-flex-line-pack: stretch
-    align-content: stretch
-    -webkit-align-items: flex-start
-    -ms-flex-align: start
-    align-items: flex-start
+    @media (min-width: 992px)
+      display: -ms-flexbox
+      display: -webkit-flex
+      display: flex
+      -webkit-flex-direction: row
+      -ms-flex-direction: row
+      flex-direction: row
+      -webkit-flex-wrap: wrap
+      -ms-flex-wrap: wrap
+      flex-wrap: wrap
+      -webkit-justify-content: space-between
+      -ms-flex-pack: justify
+      justify-content: space-between
+      -webkit-align-content: stretch
+      -ms-flex-line-pack: stretch
+      align-content: stretch
+      -webkit-align-items: flex-start
+      -ms-flex-align: start
+      align-items: flex-start
+    @media (max-width: 991px)
+      background: rgba($red--black,0.9)
+      @include position(absolute,-10vh,0,null,0,100)
+      min-height: 120vh
+      padding-top: 20vh
+      display: none
+      animation: menuDown 0.5s 1
+      &.show
+        display: block
     & > li
-      -webkit-order: 0
-      -ms-flex-order: 0
-      order: 0
-      -webkit-flex: 1 1 auto
-      -ms-flex: 1 1 auto
-      flex: 1 1 auto
-      -webkit-align-self: auto
-      -ms-flex-item-align: auto
-      align-self: auto
       position: relative
+      @media (min-width: 992px)
+        -webkit-order: 0
+        -ms-flex-order: 0
+        order: 0
+        -webkit-flex: 1 1 auto
+        -ms-flex: 1 1 auto
+        flex: 1 1 auto
+        -webkit-align-self: auto
+        -ms-flex-item-align: auto
+        align-self: auto
+      @media (max-width: 991px)
+        padding: 0 25px
       &::before
         content: ''
         position: absolute
@@ -132,9 +161,10 @@ body
         height: 4px
         border-radius: 50%
         background: $red
-      &:first-child
-        &::before
-          display: none
+      @media (min-width: 992px)
+        &:first-child
+          &::before
+            display: none
       & > a
         display: block
         font-size: 18px
@@ -143,10 +173,25 @@ body
         height: 50px
         line-height: 50px
         &:hover
-          opacity: 0.5
+          opacity: 0.8
       &.current-menu-item
         & > a
           color: $red
+  @include element(icon)
+    @media (min-width: 992px)
+      display: none
+    @media (max-width: 991px)
+      float: right
+      width: 50px
+      height: 50px
+      padding-top: 15px
+      position: relative
+      z-index: 100
+      svg
+        display: block
+        width: 40px
+        height: 30px
+        margin: 0 auto
 .m-biography
   margin-bottom: 70px
   @include element(title)
@@ -206,8 +251,10 @@ body
     height: 100%
     @media (min-height: 800px)
       width: 100%
-    @media (max-height: 799px)
+    @media (max-height: 799px) and (min-width: 992px)
       width: 459px
+    @media (max-width: 991px)
+      display: none
   @include element(logo)
     background: url("../img/home-logo.png")
     background-size: cover
@@ -219,9 +266,13 @@ body
     @media (min-height: 800px)
       margin-bottom: 50px
       margin-left: -100px
-    @media (max-height: 799px)
+    @media (max-height: 799px) and (min-width: 1200px)
       margin-bottom: 30px
       margin-left: -235px
+    @media (min-width: 992px) and (max-width: 1199px)
+      margin-left: -100px
+    @media (max-width: 991px)
+      margin-bottom: 30px
   @include element(col)
     position: relative
     @include modifier(right)
@@ -247,13 +298,11 @@ body
   @include element(pic)
     background: url("../img/schedule-pic.png") no-repeat center bottom
     background-size: contain
-    //width: 479px
-    //height: 700px
     position: absolute
     bottom: 0
     right: 0
-    width: 40%
-    height: 115%
+    width: 42%
+    height: 120%
 
 .p-biography
   .content
@@ -289,7 +338,6 @@ body
     -ms-flex-align: start
     align-items: flex-start
   @include element(col)
-    width: 20%
     padding: 0 25px
     -webkit-order: 0
     -ms-flex-order: 0
@@ -300,6 +348,14 @@ body
     -webkit-align-self: auto
     -ms-flex-item-align: auto
     align-self: auto
+    @media (min-width: 1200px)
+      width: 20%
+    @media (min-width: 992px) and (max-width: 1199px)
+      width: 25%
+    @media (min-width: 768px) and (max-width: 991px)
+      width: 33.3333%
+    @media (max-width: 767px)
+      width: 50%
   @include element(link)
     display: block
     margin-bottom: 10px
@@ -307,6 +363,9 @@ body
     color: $white
     font-weight: normal
     margin-bottom: 20px
+    a
+      display: block
+      color: inherit
 .p-team
   @include element(list)
     margin: 0 -25px
@@ -329,7 +388,6 @@ body
     -ms-flex-align: start
     align-items: flex-start
   @include element(col)
-    width: 20%
     padding: 0 25px
     -webkit-order: 0
     -ms-flex-order: 0
@@ -341,6 +399,14 @@ body
     -ms-flex-item-align: auto
     align-self: auto
     margin-bottom: 40px
+    @media (min-width: 1200px)
+      width: 20%
+    @media (min-width: 992px) and (max-width: 1199px)
+      width: 25%
+    @media (min-width: 768px) and (max-width: 991px)
+      width: 33.3333%
+    @media (max-width: 767px)
+      width: 50%
   @include element(img)
     display: block
     margin-bottom: 15px
@@ -356,3 +422,187 @@ body
     font-size: 13px
     color: $white
     text-align: center
+.p-songs
+  @include element(list)
+    margin: 0 -25px
+    display: -ms-flexbox
+    display: -webkit-flex
+    display: flex
+    -webkit-flex-direction: row
+    -ms-flex-direction: row
+    flex-direction: row
+    -webkit-flex-wrap: wrap
+    -ms-flex-wrap: wrap
+    flex-wrap: wrap
+    -webkit-justify-content: flex-start
+    -ms-flex-pack: start
+    justify-content: flex-start
+    -webkit-align-content: flex-start
+    -ms-flex-line-pack: start
+    align-content: flex-start
+    -webkit-align-items: flex-start
+    -ms-flex-align: start
+    align-items: flex-start
+  @include element(col)
+    padding: 0 25px
+    -webkit-order: 0
+    -ms-flex-order: 0
+    order: 0
+    -webkit-flex: 0 1 auto
+    -ms-flex: 0 1 auto
+    flex: 0 1 auto
+    -webkit-align-self: auto
+    -ms-flex-item-align: auto
+    align-self: auto
+    margin-bottom: 40px
+    @media (min-width: 1200px)
+      width: 20%
+    @media (min-width: 992px) and (max-width: 1199px)
+      width: 25%
+    @media (min-width: 768px) and (max-width: 991px)
+      width: 33.3333%
+    @media (max-width: 767px)
+      width: 50%
+  @include element(img)
+    display: block
+    margin-bottom: 15px
+    &:hover
+      opacity: 0.8
+    img
+      display: block
+  @include element(title)
+    font-size: 18px
+    font-weight: normal
+    margin-bottom: 5px
+    color: $white
+    a
+      color: inherit
+      &:hover
+        opacity: 0.8
+  @include element(playlist)
+    padding: 0 30px
+  @include element(audio)
+    margin-bottom: 20px
+    color: $white
+    audio
+      width: 100%
+      &::-internal-media-controls-download-button
+        display: none
+      &::-webkit-media-controls-enclosure
+        overflow: hidden
+      &::-webkit-media-controls-panel
+        width: calc(100% + 30px)
+      &::-internal-media-controls-cast-button
+        display: none
+
+.p-news
+  @include element(list)
+    margin: 0 -25px
+  @include element(item)
+    padding: 0 25px 20px
+    margin-bottom: 20px
+    &::after
+      content: ''
+      position: absolute
+      bottom: 0
+      left: 25px
+      right: 25px
+      border-bottom: 1px solid rgba($red,0.5)
+  @include element(img)
+    display: block
+    &:hover
+      opacity: 0.8
+    img
+      display: block
+  @include element(title)
+    color: $white
+    font-size: 18px
+    font-weight: bold
+    margin-bottom: 10px
+    a
+      color: inherit
+  @include element(intro)
+    color: $white
+    font-size: 13px
+    margin-bottom: 17px
+  @include element(more)
+    @include clearfix()
+    a
+      display: block
+      float: left
+      height: 36px
+      line-height: 34px
+      border: 1px solid rgba($white,0.5)
+      background: rgba($red,0.15)
+      color: $white
+      font-size: 14px
+      text-align: center
+      padding: 0 15px
+      text-transform: lowercase
+      &:hover
+        background: rgba($red,0.8)
+.p-single
+  margin-bottom: 60px
+.p-photo
+  @include element(list)
+    @media (min-width: 1200px)
+      margin: 0 -60px
+    @media (max-width: 1199px)
+      margin: 0 -25px
+  @include element(item)
+    @media (min-width: 1200px)
+      padding: 0 60px 120px
+    @media (max-width: 1199px)
+      padding: 0 25px 50px
+    a
+      display: block
+      position: relative
+      &::after, &::before
+        content: ''
+        opacity: 0
+        transition: opacity 0.3s ease
+      &::after
+        background: rgba($red--black,0.8)
+        @include position(absolute,0,0,0,0,1)
+      &::before
+        @include sprite($icon-search)
+        @include position(absolute,50%,null,null,50%,2)
+        margin-top: -$icon-search-height/2
+        margin-left: -$icon-search-width/2
+      &:hover
+        box-shadow: 0 5px 15px rgba($black,0.4)
+        &::after, &::before
+          opacity: 1
+      img
+        display: block
+.p-contacts
+  @include element(info)
+    position: relative
+    padding-left: 55px
+    margin-left: 50px
+    margin-bottom: 50px
+    color: $white
+    a
+      color: inherit
+    &::before
+      content: ''
+      @include position(absolute,5px,null,null,0,1)
+    @include modifier(address)
+      &::before
+        @include sprite($icon-address)
+    @include modifier(phone)
+      &::before
+        @include sprite($icon-phone)
+    @include modifier(schedule)
+      &::before
+        @include sprite($icon-schedule)
+    @include modifier(email)
+      &::before
+        @include sprite($icon-email)
+  @include element(title)
+    font-size: 16px
+    font-weight: bold
+    margin-bottom: 5px
+  @include element(map)
+    height: 365px
+    margin-top: 10px

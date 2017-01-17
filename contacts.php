@@ -14,26 +14,26 @@ get_header(); ?>
                 <div class="col-xs-12">
                     <h1 class="page-title"><?php the_title(); ?></h1>
                 </div>
-                <div class="col-xs-12 col-md-6">
+                <div class="col-xs-12 col-md-5">
                     <div class="p-contacts__info--address">
-                        <h3>Адреса:</h3>
+                        <h3 class="p-contacts__title">Адреса:</h3>
                         <?php the_field('address') ?>
                     </div>
                     <div class="p-contacts__info--phone">
-                        <h3>Телефон:</h3>
+                        <h3 class="p-contacts__title">Телефон:</h3>
                         <?php the_field('phone') ?>
                     </div>
                     <div class="p-contacts__info--schedule">
-                        <h3>Графік роботи:</h3>
+                        <h3 class="p-contacts__title">Графік роботи:</h3>
                         <?php the_field('schedule') ?>
                     </div>
                     <div class="p-contacts__info--email">
-                        <h3>E-mail:</h3>
+                        <h3 class="p-contacts__title">E-mail:</h3>
                         <?php the_field('email') ?>
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-6">
-                    <div id="map" class="c-contacts__map"></div>
+                <div class="col-xs-12 col-md-7">
+                    <div id="map" class="p-contacts__map"></div>
                     <script type="text/javascript">
                         // Google map
                         function initMap() {

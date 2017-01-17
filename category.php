@@ -2,7 +2,7 @@
 
 <?php if (have_posts()) : ?>
 
-    <section class="p-category">
+    <section class="p-category <?php if (is_category(4)) : ?>p-news<?php elseif (is_category(5)) : ?>p-songs<?php endif; ?>">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
@@ -10,28 +10,26 @@
                 </div>
             </div>
             <?php if (is_category(4)) : ?>
-                <div class="p-news row">
+                <div class="p-news__list row">
                     <?php while (have_posts()) : the_post(); ?>
-                        <div class="col-xs-12 col-md-6">
-                            <div class="p-news__item">
-                                <div class="row">
-                                    <div class="col-xs-12 col-md-4">
-                                        <div class="p-news__image--desktop">
-                                            <a href="<?php the_permalink(); ?>" class="p-news__img">
-                                                <?php if (has_post_thumbnail()) {
-                                                    the_post_thumbnail('news-thumb');
-                                                } else {
-                                                    echo '<img src="' . get_template_directory_uri() . '/assets/images/default-photo--news.jpg" alt="" >';
-                                                } ?>
-                                            </a>
-                                        </div>
+                        <div class="col-xs-12 col-md-6 p-news__item">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-4">
+                                    <div class="p-news__image--desktop">
+                                        <a href="<?php the_permalink(); ?>" class="p-news__img">
+                                            <?php if (has_post_thumbnail()) {
+                                                the_post_thumbnail('news-thumb');
+                                            } else {
+                                                echo '<img src="' . get_template_directory_uri() . '/assets/images/default-photo--news.jpg" alt="" >';
+                                            } ?>
+                                        </a>
                                     </div>
-                                    <div class="col-xs-12 col-md-8">
-                                        <h3 class="p-news__title"><a href="<?php the_permalink(); ?>"><?php echo textCropping(get_the_title(), 50); ?></a></h3>
-                                        <div class="p-news__image--mobile"></div>
-                                        <div class="p-news__intro"><?php echo textCropping(get_the_content(''), 150); ?></div>
-                                        <p class="p-news__more"><a href="<?php the_permalink(); ?>" class="">Детальніше</a></p>
-                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-8">
+                                    <h3 class="p-news__title"><a href="<?php the_permalink(); ?>"><?php echo textCropping(get_the_title(), 50); ?></a></h3>
+                                    <div class="p-news__image--mobile"></div>
+                                    <div class="p-news__intro"><?php echo textCropping(get_the_content(''), 150); ?></div>
+                                    <p class="p-news__more"><a href="<?php the_permalink(); ?>" class="">Детальніше</a></p>
                                 </div>
                             </div>
                         </div>
@@ -53,17 +51,17 @@
                     </div>
                 </div>
             <?php elseif (is_category(5)) : ?>
-                <div class="p-songs row">
+                <div class="p-songs__list row">
                     <?php while (have_posts()) : the_post(); ?>
                         <div class="p-songs__col">
-                            <a href="<?php the_permalink(); ?>" class="p-songs__image">
+                            <a href="<?php the_permalink(); ?>" class="p-songs__img">
                                 <?php if (has_post_thumbnail()) {
                                     the_post_thumbnail('song-thumb');
                                 } else {
                                     echo '<img src="' . get_template_directory_uri() . '/assets/images/default-photo--song.jpg" alt="" >';
                                 } ?>
                             </a>
-                            <h2 class="p-songs__name"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                            <h2 class="p-songs__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
                         </div>
                     <?php endwhile; ?>
                 </div>
