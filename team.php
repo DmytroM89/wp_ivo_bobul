@@ -17,7 +17,7 @@ get_header(); ?>
                         <div class="p-team__list">
                             <?php while ( have_rows('team') ) : the_row(); ?>
                                 <div class="p-team__col">
-                                    <a class="p-team__img" href="<?php the_permalink(); ?>">
+                                    <p class="p-team__img">
                                         <?php
                                         $image = get_sub_field('photo');
                                         $size = 'team-thumb';
@@ -27,7 +27,7 @@ get_header(); ?>
                                             echo '<img src="' . get_template_directory_uri() . '/assets/images/default_avatar.jpg" alt="" >';
                                         }
                                         ?>
-                                    </a>
+                                    </p>
                                     <h3 class="p-team__title"><?php the_sub_field('name'); ?></h3>
                                     <p class="p-team__post"><?php the_sub_field('post'); ?></p>
                                 </div>
