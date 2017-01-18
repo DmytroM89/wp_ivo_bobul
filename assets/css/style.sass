@@ -13,7 +13,12 @@ $gray: #bdbdbd
 
 body
   font-family: 'Roboto'
+  &.no-scroll
+    overflow: hidden
 
+.container
+  @media (max-width: 600px)
+    padding: 0 15px
 .wrapper
   background-image: url("../img/bg-default.jpg")
   background-size: cover
@@ -54,11 +59,16 @@ body
 .page-title
   color: $white
   text-transform: uppercase
-  font-size: 45px
   font-weight: bold
   padding-bottom: 20px
   margin-bottom: 25px
   position: relative
+  @media (min-width: 992px)
+    font-size: 45px
+  @media (min-width: 544px) and (max-width: 991px)
+    font-size: 32px
+  @media (max-width: 543px)
+    font-size: 24px
   &::after
     content: ''
     width: 100%
@@ -71,6 +81,10 @@ body
 
 .content
   color: $white
+  @media (min-width: 544px)
+    font-size: 14px
+  @media (max-width: 543px)
+    font-size: 12px
   p
     margin-bottom: 10px
     line-height: 1.65
@@ -130,9 +144,9 @@ body
       align-items: flex-start
     @media (max-width: 991px)
       background: rgba($red--black,0.9)
-      @include position(absolute,-10vh,0,null,0,100)
-      min-height: 120vh
-      padding-top: 20vh
+      @include position(fixed,-20px,0,null,0,90)
+      min-height: calc(100vh + 40px)
+      padding-top: 35px
       display: none
       animation: menuDown 0.5s 1
       &.show
@@ -182,16 +196,39 @@ body
       display: none
     @media (max-width: 991px)
       float: right
-      width: 50px
+      width: 40px
       height: 50px
-      padding-top: 15px
+      padding-top: 20px
       position: relative
       z-index: 100
       svg
         display: block
-        width: 40px
-        height: 30px
-        margin: 0 auto
+        width: 100%
+        display: block
+        position: absolute
+        &:first-child
+          @include tOrigin
+          @include transition
+        &:last-child
+          @include tOrigin
+          @include transition
+          @include tScale0
+      &.toggle
+        svg
+          &:first-child
+            @include tScale0
+          &:last-child
+            @include tScale1
+      &.tRotate
+        svg
+          &:last-child
+            transform: scale(0) rotate(0deg)
+      &.toggle
+        svg
+          &:last-child
+            transform: scale(1) rotate(-360deg)
+    @media (max-width: 375px)
+      width: 30px
 .m-biography
   margin-bottom: 70px
   @include element(title)
@@ -211,7 +248,7 @@ body
       content: ''
       position: absolute
       right: 0
-      bottom: -40px
+      bottom: -50px
       background: url("../img/signature.png") no-repeat center
       width: 125px
       height: 48px
@@ -222,14 +259,15 @@ body
   padding: 20px 0 0
   position: relative
   margin-bottom: 50px
-  &::before
-    content: ''
-    background: rgba($white,0.1)
-    width: 1px
-    position: absolute
-    top: 10px
-    left: 50%
-    bottom: 10px
+  @media (min-width: 768px)
+    &::before
+      content: ''
+      background: rgba($white,0.1)
+      width: 1px
+      position: absolute
+      top: 10px
+      left: 50%
+      bottom: 10px
   p
     font-size: 14px
     color: $white
@@ -256,10 +294,8 @@ body
     @media (max-width: 991px)
       display: none
   @include element(logo)
-    background: url("../img/home-logo.png")
-    background-size: cover
-    width: 476px
-    height: 249px
+    background: url("../img/home-logo.png") no-repeat
+    background-size: contain
     display: block
     position: relative
     z-index: 1
@@ -273,6 +309,13 @@ body
       margin-left: -100px
     @media (max-width: 991px)
       margin-bottom: 30px
+    @media (min-width: 768px)
+      width: 476px
+      height: 249px
+    @media (max-width: 767px)
+      width: 280px
+      height: 150px
+      margin-top: -50px
   @include element(col)
     position: relative
     @include modifier(right)
@@ -285,8 +328,10 @@ body
     margin-bottom: 20px
     text-transform: uppercase
   @include element(list)
+    @media (min-width: 768px)
+      max-width: 60%
+  @include element(month)
     margin-bottom: 20px
-    max-width: 60%
   p
     margin-bottom: 10px
     span
@@ -296,14 +341,16 @@ body
   @include element(col)
     min-height: calc(100vh - 139px)
   @include element(pic)
-    background: url("../img/schedule-pic.png") no-repeat center bottom
-    background-size: contain
-    position: absolute
-    bottom: 0
-    right: 0
-    width: 42%
-    height: 120%
-
+    @media (min-width: 768px)
+      background: url("../img/schedule-pic.png") no-repeat center bottom
+      background-size: contain
+      position: absolute
+      bottom: 0
+      right: 0
+      width: 42%
+      height: 120%
+    @media (max-width: 767px)
+      display: none
 .p-biography
   .content
     position: relative
@@ -311,50 +358,54 @@ body
     &::after
       content: ''
       position: absolute
-      right: 100px
+      right: 0
       bottom: -70px
       background: url("../img/signature.png") no-repeat center
       width: 125px
       height: 48px
+      @media (min-width: 768px)
+        margin-right: 100px
 .p-video
   @include element(list)
     margin: 0 -25px
-    display: -ms-flexbox
-    display: -webkit-flex
-    display: flex
-    -webkit-flex-direction: row
-    -ms-flex-direction: row
-    flex-direction: row
-    -webkit-flex-wrap: wrap
-    -ms-flex-wrap: wrap
-    flex-wrap: wrap
-    -webkit-justify-content: flex-start
-    -ms-flex-pack: start
-    justify-content: flex-start
-    -webkit-align-content: flex-start
-    -ms-flex-line-pack: start
-    align-content: flex-start
-    -webkit-align-items: flex-start
-    -ms-flex-align: start
-    align-items: flex-start
+    @media (min-width: 544px)
+      display: -ms-flexbox
+      display: -webkit-flex
+      display: flex
+      -webkit-flex-direction: row
+      -ms-flex-direction: row
+      flex-direction: row
+      -webkit-flex-wrap: wrap
+      -ms-flex-wrap: wrap
+      flex-wrap: wrap
+      -webkit-justify-content: flex-start
+      -ms-flex-pack: start
+      justify-content: flex-start
+      -webkit-align-content: flex-start
+      -ms-flex-line-pack: start
+      align-content: flex-start
+      -webkit-align-items: flex-start
+      -ms-flex-align: start
+      align-items: flex-start
   @include element(col)
     padding: 0 25px
-    -webkit-order: 0
-    -ms-flex-order: 0
-    order: 0
-    -webkit-flex: 0 1 auto
-    -ms-flex: 0 1 auto
-    flex: 0 1 auto
-    -webkit-align-self: auto
-    -ms-flex-item-align: auto
-    align-self: auto
+    @media (min-width: 544px)
+      -webkit-order: 0
+      -ms-flex-order: 0
+      order: 0
+      -webkit-flex: 0 1 auto
+      -ms-flex: 0 1 auto
+      flex: 0 1 auto
+      -webkit-align-self: auto
+      -ms-flex-item-align: auto
+      align-self: auto
     @media (min-width: 1200px)
       width: 20%
     @media (min-width: 992px) and (max-width: 1199px)
       width: 25%
     @media (min-width: 768px) and (max-width: 991px)
       width: 33.3333%
-    @media (max-width: 767px)
+    @media (min-width: 544px) and (max-width: 767px)
       width: 50%
   @include element(link)
     display: block
@@ -369,43 +420,45 @@ body
 .p-team
   @include element(list)
     margin: 0 -25px
-    display: -ms-flexbox
-    display: -webkit-flex
-    display: flex
-    -webkit-flex-direction: row
-    -ms-flex-direction: row
-    flex-direction: row
-    -webkit-flex-wrap: wrap
-    -ms-flex-wrap: wrap
-    flex-wrap: wrap
-    -webkit-justify-content: flex-start
-    -ms-flex-pack: start
-    justify-content: flex-start
-    -webkit-align-content: flex-start
-    -ms-flex-line-pack: start
-    align-content: flex-start
-    -webkit-align-items: flex-start
-    -ms-flex-align: start
-    align-items: flex-start
+    @media (min-width: 544px)
+      display: -ms-flexbox
+      display: -webkit-flex
+      display: flex
+      -webkit-flex-direction: row
+      -ms-flex-direction: row
+      flex-direction: row
+      -webkit-flex-wrap: wrap
+      -ms-flex-wrap: wrap
+      flex-wrap: wrap
+      -webkit-justify-content: flex-start
+      -ms-flex-pack: start
+      justify-content: flex-start
+      -webkit-align-content: flex-start
+      -ms-flex-line-pack: start
+      align-content: flex-start
+      -webkit-align-items: flex-start
+      -ms-flex-align: start
+      align-items: flex-start
   @include element(col)
     padding: 0 25px
-    -webkit-order: 0
-    -ms-flex-order: 0
-    order: 0
-    -webkit-flex: 0 1 auto
-    -ms-flex: 0 1 auto
-    flex: 0 1 auto
-    -webkit-align-self: auto
-    -ms-flex-item-align: auto
-    align-self: auto
     margin-bottom: 40px
+    @media (min-width: 544px)
+      -webkit-order: 0
+      -ms-flex-order: 0
+      order: 0
+      -webkit-flex: 0 1 auto
+      -ms-flex: 0 1 auto
+      flex: 0 1 auto
+      -webkit-align-self: auto
+      -ms-flex-item-align: auto
+      align-self: auto
     @media (min-width: 1200px)
       width: 20%
     @media (min-width: 992px) and (max-width: 1199px)
       width: 25%
     @media (min-width: 768px) and (max-width: 991px)
       width: 33.3333%
-    @media (max-width: 767px)
+    @media (min-width: 544px) and (max-width: 767px)
       width: 50%
   @include element(img)
     display: block
@@ -425,43 +478,45 @@ body
 .p-songs
   @include element(list)
     margin: 0 -25px
-    display: -ms-flexbox
-    display: -webkit-flex
-    display: flex
-    -webkit-flex-direction: row
-    -ms-flex-direction: row
-    flex-direction: row
-    -webkit-flex-wrap: wrap
-    -ms-flex-wrap: wrap
-    flex-wrap: wrap
-    -webkit-justify-content: flex-start
-    -ms-flex-pack: start
-    justify-content: flex-start
-    -webkit-align-content: flex-start
-    -ms-flex-line-pack: start
-    align-content: flex-start
-    -webkit-align-items: flex-start
-    -ms-flex-align: start
-    align-items: flex-start
+    @media (min-width: 544px)
+      display: -ms-flexbox
+      display: -webkit-flex
+      display: flex
+      -webkit-flex-direction: row
+      -ms-flex-direction: row
+      flex-direction: row
+      -webkit-flex-wrap: wrap
+      -ms-flex-wrap: wrap
+      flex-wrap: wrap
+      -webkit-justify-content: flex-start
+      -ms-flex-pack: start
+      justify-content: flex-start
+      -webkit-align-content: flex-start
+      -ms-flex-line-pack: start
+      align-content: flex-start
+      -webkit-align-items: flex-start
+      -ms-flex-align: start
+      align-items: flex-start
   @include element(col)
     padding: 0 25px
-    -webkit-order: 0
-    -ms-flex-order: 0
-    order: 0
-    -webkit-flex: 0 1 auto
-    -ms-flex: 0 1 auto
-    flex: 0 1 auto
-    -webkit-align-self: auto
-    -ms-flex-item-align: auto
-    align-self: auto
     margin-bottom: 40px
+    @media (min-width: 544px)
+      -webkit-order: 0
+      -ms-flex-order: 0
+      order: 0
+      -webkit-flex: 0 1 auto
+      -ms-flex: 0 1 auto
+      flex: 0 1 auto
+      -webkit-align-self: auto
+      -ms-flex-item-align: auto
+      align-self: auto
     @media (min-width: 1200px)
       width: 20%
     @media (min-width: 992px) and (max-width: 1199px)
       width: 25%
     @media (min-width: 768px) and (max-width: 991px)
       width: 33.3333%
-    @media (max-width: 767px)
+    @media (min-width: 544px) and (max-width: 767px)
       width: 50%
   @include element(img)
     display: block
@@ -479,8 +534,16 @@ body
       color: inherit
       &:hover
         opacity: 0.8
+  @include element(album)
+    position: relative
+    img
+      display: block
+      margin-bottom: 20px
+    p
+      margin-bottom: 15px
   @include element(playlist)
-    padding: 0 30px
+    @media (min-width: 992px)
+      padding: 0 30px
   @include element(audio)
     margin-bottom: 20px
     color: $white
@@ -510,6 +573,8 @@ body
       border-bottom: 1px solid rgba($red,0.5)
   @include element(img)
     display: block
+    @media (max-width: 543px)
+      margin-bottom: 20px
     &:hover
       opacity: 0.8
     img
@@ -547,13 +612,17 @@ body
   @include element(list)
     @media (min-width: 1200px)
       margin: 0 -60px
-    @media (max-width: 1199px)
+    @media (min-width: 768px) and (max-width: 1199px)
       margin: 0 -25px
+    @media (max-width: 767px)
+      margin: 0 -15px
   @include element(item)
     @media (min-width: 1200px)
       padding: 0 60px 120px
-    @media (max-width: 1199px)
+    @media (min-width: 768px) and (max-width: 1199px)
       padding: 0 25px 50px
+    @media (max-width: 767px)
+      padding: 0 15px 30px
     a
       display: block
       position: relative
@@ -576,12 +645,14 @@ body
       img
         display: block
 .p-contacts
+  margin-bottom: 60px
   @include element(info)
     position: relative
     padding-left: 55px
-    margin-left: 50px
     margin-bottom: 50px
     color: $white
+    @media (min-width: 1200px)
+      margin-left: 50px
     a
       color: inherit
     &::before

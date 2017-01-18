@@ -40,6 +40,8 @@ jQuery(document).ready(function($) {
     // Mobile menu
     $(".m-nav__icon").on("click", function () {
         $(".m-nav ul.menu").toggleClass("show");
+        $(this).toggleClass('toggle');
+        $('body').toggleClass('no-scroll')
     })
 
 });

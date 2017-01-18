@@ -18,7 +18,7 @@ get_header(); ?>
                             <?php
                             $count = 0;
                             foreach (getScheduleSortArray(get_field_object('schedule')['value']) as $k=>$month) : ?>
-                                <div class="p-schedule__month col-xs-12 col-md-6">
+                                <div class="p-schedule__month col-xs-12 col-lg-6">
                                     <h3 class="p-schedule__title"><?php echo getMonthName($k); ?></h3>
                                     <?php foreach ($month as $event) : ?>
                                         <p>

@@ -26,3 +26,13 @@
   bottom: $bottom
   left: $left
   z-index: $z-index
+
+// Animation
+@mixin transition
+  transition: 0.1s ease-in-out
+@mixin tOrigin
+  transform-origin: 50% 50%
+@mixin tScale0
+  transform: scale(0)
+@mixin tScale1
+  transform: scale(1)

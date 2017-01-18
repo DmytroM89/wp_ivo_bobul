@@ -12,9 +12,9 @@
             <?php if (is_category(4)) : ?>
                 <div class="p-news__list row">
                     <?php while (have_posts()) : the_post(); ?>
-                        <div class="col-xs-12 col-md-6 p-news__item">
+                        <div class="col-xs-12 col-lg-6 p-news__item">
                             <div class="row">
-                                <div class="col-xs-12 col-md-4">
+                                <div class="col-xs-12 col-sm-4">
                                     <div class="p-news__image--desktop">
                                         <a href="<?php the_permalink(); ?>" class="p-news__img">
                                             <?php if (has_post_thumbnail()) {
@@ -25,7 +25,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-md-8">
+                                <div class="col-xs-12 col-sm-8">
                                     <h3 class="p-news__title"><a href="<?php the_permalink(); ?>"><?php echo textCropping(get_the_title(), 50); ?></a></h3>
                                     <div class="p-news__image--mobile"></div>
                                     <div class="p-news__intro"><?php echo textCropping(get_the_content(''), 150); ?></div>

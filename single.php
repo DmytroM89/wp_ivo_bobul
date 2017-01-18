@@ -24,7 +24,7 @@
                                             <div class="p-songs__audio">
                                                 <div class="row">
                                                     <div class="col-xs-12 col-md-5">
-                                                        <?php the_sub_field('title'); ?>
+                                                        <p><?php the_sub_field('title'); ?></p>
                                                     </div>
                                                     <div class="col-xs-12 col-md-7">
                                                         <audio controls>

@@ -28,12 +28,12 @@
         }
 
         #page-preloader .spinner {
-            width: 476px;
-            height: 250px;
+            width: 300px;
+            height: 156px;
             position: absolute;
             left: 50%;
             top: 50%;
-            margin: -125px 0 0 -238px;
+            margin: -78px 0 0 -150px;
             color: #FFF;
             text-align: center;
         }
@@ -56,23 +56,21 @@
                 <div class="col-xs-12 m-nav">
                     <?php wp_nav_menu("menu=main_menu"); ?>
                     <a href="#" class="m-nav__icon">
-                        <svg version="1.1"
-                             xmlns="http://www.w3.org/2000/svg" 
-                             x="0px" y="0px" width="20px" height="16px" viewBox="0 0 20 16" style="enable-background:new 0 0 20 16;" xml:space="preserve">
-                            <g id="icons_1_">
-                                <g id="menu_1_">
-                                    <path fill="#fff" d="M18,6H2C0.9,6,0,6.9,0,8s0.9,2,2,2h16c1.1,0,2-0.9,2-2S19.1,6,18,6z"/>
-                                    <path fill="#fff" d="M2,4h12c1.1,0,2-0.9,2-2s-0.9-2-2-2H2C0.9,0,0,0.9,0,2S0.9,4,2,4z"/>
-                                    <path fill="#fff" d="M14,12H2c-1.1,0-2,0.9-2,2s0.9,2,2,2h12c1.1,0,2-0.9,2-2S15.1,12,14,12z"/>
-                                </g>
-                            </g>
+                        <svg viewBox="0 0 36 30">
+                            <rect width="36" height="6" fill="#fff"/>
+                            <rect y="24" width="36" height="6" fill="#fff"/>
+                            <rect y="12" width="36" height="6" fill="#fff"/>
+                        </svg>
+                        <svg viewBox="0 0 36 30">
+                            <polygon fill="#fff" points="32.8,4.4 28.6,0.2 18,10.8 7.4,0.2 3.2,4.4 13.8,15 3.2,25.6 7.4,29.8 18,19.2 28.6,29.8 32.8,25.6 22.2,15 "/>
                         </svg>
                     </a>
                 </div>
                 <?php if (getPageId() != 2) : ?>
-                <div class="col-xs-12">
-                    <a class="e-logo" href="<?php echo get_home_url(); ?>" title="<?php echo get_bloginfo('name'); ?>"></a>
-                </div>
+                    <div class="col-xs-12">
+                        <a class="e-logo" href="<?php echo get_home_url(); ?>"
+                           title="<?php echo get_bloginfo('name'); ?>"></a>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>
