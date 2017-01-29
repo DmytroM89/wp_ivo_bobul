@@ -1,12 +1,11 @@
-<?php
-/**
- * Чистый Шаблон для разработки
- * Это шаблон 404 ошибки, отрабатывает, когда написали фигни в адресную строку
- * http://dontforget.pro
- * @package WordPress
- * @subpackage clean
- */
-get_header(); // Подключаем хедер ?> 
-<h1>Обычно тут какае то хрень про 404</h1>
-<?php get_sidebar();  // Подключаем сайдбар ?>
-<?php get_footer(); // Подключаем футер ?>
+<?php get_header(); ?>
+    <section class="p-photo">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1 class="page-title">404</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php get_footer(); ?>
