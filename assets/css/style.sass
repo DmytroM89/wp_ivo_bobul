@@ -28,6 +28,8 @@ body
   background-attachment: fixed
   @include modifier(home)
     background-image: url("../img/bg-default.jpg")
+    @media (min-width: 1200px)
+      padding-bottom: 0 !important
   @include modifier(schedule)
     background-image: url("../img/bg-schedule.jpg")
   @include modifier(video)
@@ -40,6 +42,10 @@ body
     background-image: url("../img/bg-photo.jpg")
   @include modifier(songs)
     background-image: url("../img/bg-photo.jpg")
+  @media (min-width: 544px)
+    padding-bottom: 40px
+  @media (max-width: 543px)
+    padding-bottom: 70px
 
 .header
   position: relative
@@ -677,3 +683,32 @@ body
   @include element(map)
     height: 365px
     margin-top: 10px
+
+.footer
+  position: relative
+  z-index: 100
+  @media (min-width: 544px)
+    margin-top: -40px
+  @media (max-width: 543px)
+    text-align: center
+    margin-top: -70px
+  .copyright
+    line-height: 40px
+    height: 40px
+    color: $white
+    font-size: 12px
+    opacity: 0.5
+  .studio
+    line-height: 40px
+    height: 40px
+    color: $white
+    font-size: 12px
+    @media (min-width: 544px)
+      text-align: right
+    @media (max-width: 543px)
+      margin-top: -10px
+    a
+      color: $white
+      opacity: 0.5
+      &:hover
+        opacity: 1
